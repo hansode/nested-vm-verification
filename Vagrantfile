@@ -7,18 +7,11 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "vagrant-1.6.3-x86_64"
 
-  config.vm.provider :virtualbox do |v, override|
-   # Disable the base shared folder, guest additions are unavailable.
-   #override.vm.synced_folder ".", "/vagrant", disabled: true
-   #v.gui = true
-    v.customize ["modifyvm", :id, "--memory", "2048"]
-  end
-
   config.vm.provider :vmware_workstation do |v, override|
    # Disable the base shared folder, guest additions are unavailable.
     override.vm.synced_folder ".", "/vagrant", disabled: true
    #v.gui = true
-   #v.vmx["memsize"]  = "2048"
+    v.vmx["memsize"]  = "2048"
    #v.vmx["numvcpus"] = "2"
 
    ## eth1
